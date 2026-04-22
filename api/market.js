@@ -48,7 +48,7 @@ export default async function handler(req, res) {
   const { query, mode = 'quick' } = req.body || {};
   if (!query?.trim()) return res.status(400).json({ error: 'No query provided.' });
 
-  const key = process.env.ANTHROPIC_API_KEY;
+  const key = process.env.CLAUDE_API_KEY || process.env.ANTHROPIC_API_KEY;
   if (!key) return res.status(500).json({ error: 'Server not configured.' });
 
   const isDeep = mode === 'deep';
